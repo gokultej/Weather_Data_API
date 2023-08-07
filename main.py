@@ -10,6 +10,8 @@ def home():
 def about(station,date):
     df= pandas.read_csv("")
     temperature =23
-    return str(temperature)
+    return {"station":station,
+            "date": date,
+            "temperature":temperature}
 if __name__=="__main__":
     app.run(debug=True)
