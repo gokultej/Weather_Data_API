@@ -1,3 +1,4 @@
+import pandas as pd
 from flask import Flask,render_template
 import pandas
 app = Flask(__name__)
@@ -8,8 +9,9 @@ def home():
 
 @app.route("/api/v1/<station>/<date>")
 def about(station,date):
-    df= pandas.read_csv("")
-    temperature =23
+    filename="D:\Weather_Data_API_Run\data_small\TG_STAID"+str(station).zfill(6)+".txt"
+    df = pd.read_csv(filename,skiprows=20, parse_dates=["    DATE"])
+    temperature =df.loc[df['    DATE']=="1860-01-05"]['   TG'].squeeze()
     return {"station":station,
             "date": date,
             "temperature":temperature}
